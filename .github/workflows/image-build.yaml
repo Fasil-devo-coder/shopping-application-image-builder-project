@@ -30,14 +30,14 @@ jobs:
       - name: "Initialize Packer"
         id: init
         run: packer init .
-        woking-directory: ./packer/
+        working-directory: ./packer/
 
       - name:  "Validate Packer Templates"
         id: validate
         run: packer validate .
-        woking-directory: ./packer/
+        working-directory: ./packer/
 
       - name:  "Build AMI Image"
         id: validate
         run: packer build .
-        woking-directory: ./packer/
+        working-directory: ./packer/
