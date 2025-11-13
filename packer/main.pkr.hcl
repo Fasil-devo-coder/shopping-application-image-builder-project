@@ -30,7 +30,7 @@ build {
   provisioner "file"{
     source  ="../website"
     destination = "/tmp/"
-
+  }
 
   provisioner "shell"{
     script = "./provision.sh"

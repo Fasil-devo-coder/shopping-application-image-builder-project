@@ -1,38 +1,40 @@
----
-name: "Shopping Application Image"
+----
+ame: "Shopping Application Image"
+
 on:
   push:
     branches:
       - main
       - master
+
 jobs:
   image-build-job:
-
     runs-on: ubuntu-latest
+
     env:
-      AWS_ACCESS_KEY_ID= ${{ secrets.ACCESS_KEY }}
-      AWS_SECRET_ACCESS_KEY= ${{ secrets.SECRETE_KEY }}
-      AWS_REGION="ap-northeast-1"
-      PACKER_VERSION="1.14.2"   
+      AWS_ACCESS_KEY_ID: ${{ secrets.access_key }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.secrete_key }}
+      AWS_REGION: "ap-northeast-1"
+      PACKER_VERSION: "1.14.2"
 
     steps:
+      - name: "Repository checkout"
+        uses: actions/checkout@v5
 
-      - name: "Repository checkout for cloning"
-      - uses: actions/checkout@v5
-
-      - name: "Installing Packer"
-      - uses: hashicorp/setup-packer@main
+      - name: "Install Packer"
+        uses: hashicorp/setup-packer@main
         with:
           version: ${{ env.PACKER_VERSION }}
-              
+
       - name: "Initialize Packer"
         run: packer init .
         working-directory: ./packer/
 
-      - name:  "Validate Packer Templates"
+      - name: "Validate Packer"
         run: packer validate .
         working-directory: ./packer/
 
-      - name:  "Build AMI Image"
+      - name: "Build AMI"
         run: packer build .
         working-directory: ./packer/
+
