@@ -1,0 +1,43 @@
+---
+name: "Shopping Application Image"
+on:
+  push:
+    branches:
+      - main
+      - master
+jobs:
+  image-build-job:
+
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID= ${{ secrets.access_key }}
+      AWS_SECRET_ACCESS_KEY= ${{ secrets.secret_key }}
+      AWS_REGION="ap-northeast-1"
+      PACKER_VERSION="1.14.2"   
+
+      terraform plan
+    steps:
+
+      - name: "Repository checkout for cloning"
+      - uses: actions/checkout@v5
+
+      - name: "Installing Packer"
+        uses: hashicorp/setup-packer@main
+        id: setup
+        with:
+          version: ${{ env.PACKER_VERSION }}
+              
+      - name: "Initialize Packer"
+        id: init
+        run: packer init .
+        woking-directory: ./packer/
+
+      - name:  "Validate Packer Templates"
+        id: validate
+        run: packer validate .
+        woking-directory: ./packer/
+
+      - name:  "Build AMI Image"
+        id: validate
+        run: packer build .
+        woking-directory: ./packer/
