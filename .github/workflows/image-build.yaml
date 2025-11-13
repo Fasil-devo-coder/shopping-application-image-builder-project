@@ -1,5 +1,5 @@
 ----
-ame: "Shopping Application Image"
+name: "Shopping Application Image"
 
 on:
   push:
