@@ -15,14 +15,13 @@ jobs:
       AWS_REGION="ap-northeast-1"
       PACKER_VERSION="1.14.2"   
 
-      terraform plan
     steps:
 
       - name: "Repository checkout for cloning"
       - uses: actions/checkout@v5
 
       - name: "Installing Packer"
-        uses: hashicorp/setup-packer@main
+      - uses: hashicorp/setup-packer@main
         id: setup
         with:
           version: ${{ env.PACKER_VERSION }}
