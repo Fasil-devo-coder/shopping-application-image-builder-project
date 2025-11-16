@@ -121,7 +121,7 @@ A fully automated AMI image building pipeline that deploys a website and prepare
 
 ## 📬 Author
 
-**Fasil**  
+**Muhammed Fasil**  
 DevOps & Cloud Engineer  
 GitHub: https://github.com/Fasil-devo-coder
 
